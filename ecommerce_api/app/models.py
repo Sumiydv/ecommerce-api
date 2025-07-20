@@ -8,7 +8,7 @@ class PyObjectId(ObjectId):
         from pydantic_core import core_schema
         return core_schema.no_info_plain_validator_function(
             cls.validate,
-            serialization=core_schema.plain_serializer_function(str)
+            serialization=core_schema.to_string_ser_schema()
         )
 
     @classmethod
