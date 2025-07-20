@@ -11,3 +11,5 @@ database = client.ecommerce  # your database name
 
 products_collection = database.get_collection("products")
 orders_collection = database.get_collection("orders")
+categories_collection = database.get_collection("categories")
+users_collection = database.get_collection("users")
