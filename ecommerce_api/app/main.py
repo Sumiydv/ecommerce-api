@@ -5,6 +5,10 @@ from app.orders import router as orders_router
 
 app = FastAPI(title="Ecommerce API")
 
+@app.get("/")
+async def root():
+    return {"message": "Welcome to Ecommerce API", "docs": "/docs"}
+
 # Include routers
 app.include_router(products_router, prefix="/products", tags=["Products"])
 app.include_router(orders_router, prefix="/orders", tags=["Orders"])
