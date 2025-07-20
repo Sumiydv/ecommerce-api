@@ -9,8 +9,15 @@ app = FastAPI(title="Ecommerce API", description="A comprehensive ecommerce API 
 async def root():
     return {
         "message": "Welcome to Ecommerce Backend", 
-        "endpoints": ["/health", "/products","]
-        
+        "endpoints": [
+            "/health",
+            "/products",
+            "/products/{product_id}",
+            "/products/search/",
+            "/products/categories/",
+            "/orders",
+            "/orders/{user_id}"
+        ]
     }
 
 @app.get("/health")
