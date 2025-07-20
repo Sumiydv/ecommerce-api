@@ -2,9 +2,8 @@ import uvicorn
 from fastapi import FastAPI
 from app.products import router as products_router
 from app.orders import router as orders_router
-from app.auth import router as auth_router
 
-app = FastAPI(title="Ecommerce API", description="A comprehensive ecommerce API with authentication, categories, and advanced search")
+app = FastAPI(title="Ecommerce API", description="A comprehensive ecommerce API with product categories and advanced search")
 
 @app.get("/")
 async def root():
@@ -12,7 +11,6 @@ async def root():
         "message": "Welcome to Ecommerce API", 
         "docs": "/docs",
         "features": [
-            "User authentication (register/login)",
             "Product categories and search",
             "Advanced filtering (price, stock, category)",
             "Order management"
@@ -24,7 +22,6 @@ async def health_check():
     return {"status": "healthy", "message": "API is running properly"}
 
 # Include routers
-app.include_router(auth_router, prefix="/auth", tags=["Authentication"])
 app.include_router(products_router, prefix="/products", tags=["Products"])
 app.include_router(orders_router, prefix="/orders", tags=["Orders"])
 

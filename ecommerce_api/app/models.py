@@ -1,7 +1,6 @@
-from pydantic import BaseModel, Field, ConfigDict, EmailStr
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional, Any
 from bson import ObjectId
-from datetime import datetime
 
 class PyObjectId(ObjectId):
     @classmethod
@@ -56,40 +55,6 @@ class ProductModel(BaseModel):
     category: str
     description: Optional[str] = None
     stock_quantity: int = 0
-
-class UserModel(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-        json_encoders={ObjectId: str},
-        json_schema_extra={
-            "example": {
-                "email": "user@example.com",
-                "password": "password123",
-                "name": "John Doe"
-            }
-        }
-    )
-    
-    id: PyObjectId = Field(default_factory=PyObjectId, alias="_id")
-    email: EmailStr
-    password: str
-    name: str
-    created_at: datetime = Field(default_factory=datetime.now)
-
-class UserLogin(BaseModel):
-    email: EmailStr
-    password: str
-
-class UserResponse(BaseModel):
-    model_config = ConfigDict(
-        populate_by_name=True,
-        json_encoders={ObjectId: str}
-    )
-    
-    id: PyObjectId = Field(alias="_id")
-    email: str
-    name: str
-    created_at: datetime
 
 class OrderModel(BaseModel):
     model_config = ConfigDict(
