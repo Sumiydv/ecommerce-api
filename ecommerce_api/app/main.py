@@ -9,6 +9,10 @@ app = FastAPI(title="Ecommerce API")
 async def root():
     return {"message": "Welcome to Ecommerce API", "docs": "/docs"}
 
+@app.get("/health")
+async def health_check():
+    return {"status": "healthy", "message": "API is running properly"}
+
 # Include routers
 app.include_router(products_router, prefix="/products", tags=["Products"])
 app.include_router(orders_router, prefix="/orders", tags=["Orders"])
