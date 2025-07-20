@@ -3,26 +3,34 @@ from fastapi import FastAPI
 from app.products import router as products_router
 from app.orders import router as orders_router
 
-app = FastAPI(title="Ecommerce API", description="A comprehensive ecommerce API with product categories and advanced search")
+app = FastAPI(
+    title="Ecommerce API",
+    description=
+    "A comprehensive ecommerce API with product categories and advanced search"
+)
+
 
 @app.get("/")
 async def root():
     return {
-        "message": "Welcome to Ecommerce Backend", 
+        "message":
+        "Welcome to Ecommerce Backend",
         "endpoints": [
-            "/health",
-            "/products",
-            "/products/{product_id}",
-            "/products/search/",
-            "/products/categories/",
-            "/orders",
+            "/health", "/products", "/products/{product_id}",
+            "/products/search/", "/products/categories/", "/orders",
             "/orders/{user_id}"
-        ]
+        ],
+        "documentation":
+        "/docs",
+        "health_check":
+        "To check the health of the API, visit /health"
     }
+
 
 @app.get("/health")
 async def health_check():
     return {"status": "healthy", "message": "API is running properly"}
+
 
 # Include routers
 app.include_router(products_router, prefix="/products", tags=["Products"])
