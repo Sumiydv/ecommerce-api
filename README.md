@@ -1,6 +1,6 @@
 # 🛒 Ecommerce API with FastAPI + MongoDB
 
-This is a simple backend ecommerce API built using **FastAPI** and **MongoDB** (via Motor), deployed from Replit.
+This is a simple backend ecommerce API built using **FastAPI** and **MongoDB** (via Motor)
 
 ## 🚀 Features
 
